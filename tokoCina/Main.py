@@ -20,29 +20,17 @@ def load():
 			w = csv.writer(f,delimiter=',')
 			w.writerows('Tjumlah')
 			f.close()
-			
-#			f.write('50000')
-#		dompet = 50000
 	
 	
-	#Jika sudah ada data
-	#elif cek is True:
-#		with open('data.txt','r') as f:
-#			dompet = int(f.read())
 
-def save():
-	with open('data.txt','w') as f:
-		f.write(str(dompet))
+
 
 
 dompet = 50000
 #dompet = 500000000000
 
 #Template
-a = 18
-b = 13
-c = 8
-d = 16
+
 def sp():
 	print('-'*59)
 def randstok(a):
@@ -63,7 +51,6 @@ barang = [
 
 
 
-load()
 
 
 
@@ -90,12 +77,13 @@ def Nge():#Ngepet
 		dompet += 1
 
 #Tampilan
-def dahlah():
+def view():
 	#Toko
-	global dompet
-	global barang
-	if dompet <= 0:
-		Nge()
+	a = 18
+	b = 13
+	c = 8
+	d = 16
+	# Holder
 #	print('Selamat Datang Di Toko Cina')
 	sp()
 	print(f"|{'Nama Barang'.center(a)}|",end='')
@@ -104,30 +92,28 @@ def dahlah():
 	print(f"{'Keterangan'.center(d)}|")
 	sp()
 	x = 0
+	
 	#Menampilkan Barang
 	for i in barang:
-#		auah = format(i[1],',')
-		print(f"|{x+1}.{str(i[0]).ljust(a-2)}|{format(i[1],',').rjust(b)}|{str(i[2]).rjust(c)}|{str(i[3]).rjust(d)}|")
-		x += 1
+		print(f"|{x+1}.{str(i[0]).ljust(a-2)}|{format(i[1],',').rjust(b)}|{str(i[2]).rjust(c)}|{str(i[3]).rjust(d)}|"); x += 1
 	sp()
-	print('[ ! ] Pilih Barang Sesuai Nomor')
-#	print('[ ! ]Pilih Barang Sesuai Nomor'.ljust(b+19),'|')
-	sp()
-	
 	
 	#Tas
-	print(f'|{"Isi Tas".ljust(a)}|{"Jumlah".center(b)}|')
-	sp()
-	x = 0
+	print(f'|{"Isi Tas".ljust(a)}|{"Jumlah".center(b)}|'); sp(); x = 0
 	for i in barang:
-		print(f'|{i[0].ljust(a)}|{str(Tjumlah[x]).rjust(b)}|')
-		x += 1
+		print(f'|{i[0].ljust(a)}|{str(Tjumlah[x]).rjust(b)}|'); x += 1
 	sp()
-	print(f'Isi Dompet = {format(dompet,",")}|')
+	print(f'Isi Dompet = {format(dompet,",")}|',end='')
+	print('[ ! ]Pilih Barang Sesuai Nomor|')
 	sp()
 	
+
+
+def userI():
+	global dompet
+	global barang
+	global Tjumlah
 	#Interaksi User
-	print('Isi Dompet =',format(dompet,','))
 	while True:
 		try:
 				inputU = int(input('Mau Beli Apa? ').lower())
@@ -142,7 +128,6 @@ def dahlah():
 		except ValueError:
 			print('Terjadi Kesalahan')
 		
-		
 	if inputU >= 1 and inputU<= len(barang):
 		dompet -= barang[inputU-1][1]
 		barang[inputU-1][2] -= 1
@@ -150,8 +135,9 @@ def dahlah():
 		
 		if dompet < 0:
 			dompet += barang[inputU-1][1]
+			barang[inputU-1][2] += 1
+			Tjumlah[inputU-1] -= 1
 			print('Uang Tidak Cukup')
-			Nge()
 		
 		if barang[inputU-1][2] < 0:
 			dompet += barang[inputU-1][1]
@@ -161,18 +147,16 @@ def dahlah():
 	
 	if input('ketik Sembarang Untuk Melanjutkan!') == '122912':
 		print('🤨')
-#	else:
-#		os.system("clear")
-	
+
 
 
 
 
 while True:
 	os.system('clear')
-	dahlah()
+	view()
+	userI()
 	time.sleep(1)
-
 
 
 #Menulis kedalam file.txt
