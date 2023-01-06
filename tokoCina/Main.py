@@ -9,17 +9,21 @@ import time
 
 
 def load():
-	cek = os.path.exists('data.csv') 
+	cek = os.path.exists('data.txt') 
 	Tjumlah = []
 	for i in range(0,len(barang)):
 		Tjumlah.append(0)
 	#Membuat data baru
 	if cek is False:
 		print(f'Si Pembuat Memberi Anda Uang Sebesar 50,000 Rupiah')
-		with open('data.csv','w') as f:
-			w = csv.writer(f,delimiter=',')
-			w.writerows('Tjumlah')
-			f.close()
+		with open('data.txt','w') as f:
+			data = []
+			for i in range(0,len(barang)):
+				data.append(0)
+			print(data)
+			f.writelines(data())
+			#
+		
 	
 	
 
@@ -51,8 +55,8 @@ barang = [
 
 
 
-
-
+#load()
+#os.remove('data.txt')
 
 
 
@@ -71,7 +75,7 @@ def Nge():#Ngepet
 	batas = int(input('Masukkan Uang Yang Anda Inginkan: '))
 	print('Sedang Ngepet Tunggu Hingga Selesai')
 	while True:
-		print(f'Uang Yang Terkumpul: {format(dompet,",")}')
+		print(f'Uang Yang Terkumpul: {dompet:,)}')
 		if dompet >= batas:
 			break
 		dompet += 1
@@ -101,10 +105,11 @@ def view():
 	#Tas
 	print(f'|{"Isi Tas".ljust(a)}|{"Jumlah".center(b)}|'); sp(); x = 0
 	for i in barang:
-		print(f'|{i[0].ljust(a)}|{str(Tjumlah[x]).rjust(b)}|'); x += 1
+		print(f'|{x+1}.{i[0].ljust(a-2)}|{str(Tjumlah[x]).rjust(b)}|'); x += 1
+		
 	sp()
-	print(f'Isi Dompet = {format(dompet,",")}|',end='')
-	print('[ ! ]Pilih Barang Sesuai Nomor|')
+	print(f'Isi Dompet = {dompet:,}|',end='')
+	print('[ ! ]Pilih Barang Sesuai Nomor')
 	sp()
 	
 
@@ -120,7 +125,8 @@ def userI():
 				if inputU > len(barang):
 					print('Barang Tidak Ada ')
 					continue
-				ver = input('Yakin? [y/n] ')
+				#ver = input('Yakin? [y/n] ')
+				ver = input('Bayar? [y/n] ')
 				if ver == 'y':
 					break
 				else:
@@ -156,7 +162,7 @@ while True:
 	os.system('clear')
 	view()
 	userI()
-	time.sleep(1)
+#	time.sleep(1)
 
 
 #Menulis kedalam file.txt

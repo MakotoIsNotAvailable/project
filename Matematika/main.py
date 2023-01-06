@@ -1,74 +1,55 @@
 import os
 import random
 import time
-import csv
+#import marshal as mas
 
 op = '[ © ]'
 kon = False
-timer = False
+print(f'{op}Memeriksa Data...')
+time.sleep(1)
+cek = os.path.exists('Data')
+if cek is True:
+	os.chdir('Data')
+	cekh = os.path.exists('soal.py')
+	cekhj = os.path.exists('data.txt')
+	cekhg = os.path.exists('__init__.py')
+	if cekh is True and cekhj is True and cekhg is True:
+		print(f'{op}Memproses Data...')
+		from Data import *
+		with open('data.txt','r') as file:
+			nilai = int(file.read())
+			time.sleep(2)
+		print(f'{op}All Done\n{op}')
 
-def setup():
-	global nilai
-	global kon
-	print(f'{op}Memeriksa Data...')
-	cek = os.path.exists('Data')
-	if timer is True: time.sleep(1)
-	if cek is True:
-		os.chdir('Data')
-		cekh = os.path.exists('soal.py')
-		cekhg = os.path.exists('__init__.py')
-		cekgf = os.path.exists('log.csv')
-		
-		if cekh is True and cekhg is True:
-			print(f'{op}Memuat Progres...')
-			cekhj = os.path.exists('data.txt')
-			if timer is True: time.sleep(2)
-			
-			if cekhj is True:
-				with open('data.txt','r') as f:
-					try:
-						nilai = int(f.read())###
-						kon = True
-					except:
-						print(f'{op}Terjadi Kesalahan Saat Membaca File!\n{op}Membuat Ulang File...')
-			if cekgf is False:
-						with open('log.csv','w') as log:
-							logh = csv.writer(log,delimiter=',')
-							logh.writerows([('Sekarang'),('Tanggal')])
-						os.remove('data.txt')
-						with open('data.txt','w') as f:
-							f.write('0')
-							nilai = 0
-							kon = True
-			else:
-				print(f'{op}data.txt Tidak Ditemukan!\n{op}Membuat File Baru...')
-				with open('data.txt','w') as f:
-					f.write('0')
-					nilai = 0
-					kon = True
-
-
-def main():
-	while True:
-		if nilai < 10:
-			a1()
-		elif nilai >= 10:
-			a2()
-
-
-
-
-setup()
-if kon is True:
-	if timer is True: time.sleep(0.5)
-	print(f'{op}All Done;')
-	print(f'{op}Nilai = {nilai}')
-	if timer is True: time.sleep(0.5)
-	for x in [3,2,1,0]:
-		print(f'{op}Program Akan Dijalankan Dalam {x}')
-		if timer is True: time.sleep(1)
-	if timer is True: os.system('clear')
-	from Data import *
-	main()
+	elif cekh is True and cekhg is True and cekhj is False:
+		print(f'{op}Memproses Data...')
+		time.sleep(1)
+		print(f'{op}data.txt Tidak Di Temukan,Membuat data Baru...')
+		with open('data.txt','w') as file:
+			file.write('0')#### Pake Pickle
+			nilai = 0
+			time.sleep(1)
+		from Data import *
+		print(f'{op}All Done\n{op}')
+	elif cekh is False or cekhg is False:
+		print(f'{op}Data Tidak Ditemukan !')
+		print(f'{op}Tidak Bisa Menjalankan Program')
+		kon = True
 else:
-	print(f'{op}Data Tidak Ditemukan!\n{op}Tidak Bisa Menjalankan Program')
+	print(f'{op}Data Tidak Ditemukan\n{op}Tidak Bisa Menjalankan Program')
+	print('Tidak Bisa Menjalankan Program')
+	kon = True
+
+if kon is False:
+	for i in [5,4,3,2,1]:
+		print(f'{op}Program Akan Di Mulai Dalam {i}')
+		time.sleep(1)
+	print(op)
+
+
+
+
+while True:
+	with open('data.txt','r') as file:
+		print('Nilai = ',file.read())
+	a1()
