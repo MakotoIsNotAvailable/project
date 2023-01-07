@@ -109,7 +109,7 @@ def view():
 		
 	sp()
 	print(f'Isi Dompet = {dompet:,}|',end='')
-	print('[ ! ]Pilih Barang Sesuai Nomor')
+	print('[ ! ]Pilih Barang Sesuai Angka')
 	sp()
 	
 
