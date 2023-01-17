@@ -5,13 +5,21 @@ class Raport:
 		self.nama = nama
 		self.nisn = nisn
 	
-	def kelas7(self):
-		pass
+	def setNilaiPraktek(self,qh):
+		self.__AlQuranHadistP = qh
+		
 	
-	def setNilaiP(self,kelas,prakarya):
-		self.kelas.prakarya = prakarya
+	def setNilaiKeterampilan(self,h):
+		self.__AlquranHadistK = qh
+	
+	def info():
+		print(f'''
+		Al Quran Hadist = {self.AlQuranHadist
+		''')
 
 
-bruh = Raport('aspian','0083936728')
+aspian7Ganjil = Raport('aspian','0083936728')
 
-bruh.setNilaiP()
+aspian.setNilaiPraktek(9)
+
+aspian.info()
