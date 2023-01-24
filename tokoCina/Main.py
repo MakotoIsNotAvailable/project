@@ -125,6 +125,15 @@ def userI():
 				if inputU > len(barang):
 					print('Barang Tidak Ada ')
 					continue
+				if barang[inputU-1][2] <= 0:
+					print('Stok Barang Habis!')
+					continue
+				if dompet < barang[inputU-1][1]:
+					print('Uang Tidak Cukup!')
+					continue
+				
+				##
+				
 				#ver = input('Yakin? [y/n] ')
 				ver = input('Bayar? [y/n] ')
 				if ver == 'y':
@@ -139,17 +148,17 @@ def userI():
 		barang[inputU-1][2] -= 1
 		Tjumlah[inputU-1] += 1
 		
-		if dompet < 0:
-			dompet += barang[inputU-1][1]
-			barang[inputU-1][2] += 1
-			Tjumlah[inputU-1] -= 1
-			print('Uang Tidak Cukup')
-		
-		if barang[inputU-1][2] < 0:
-			dompet += barang[inputU-1][1]
-			barang[inputU-1][2] += 1
-			Tjumlah[inputU-1] -= 1
-			print('Stok Barang Habis')
+#		if dompet < 0:
+#			dompet += barang[inputU-1][1]
+#			barang[inputU-1][2] += 1
+#			Tjumlah[inputU-1] -= 1
+#			print('Uang Tidak Cukup')
+#		
+#		if barang[inputU-1][2] < 0:
+#			dompet += barang[inputU-1][1]
+#			barang[inputU-1][2] += 1
+#			Tjumlah[inputU-1] -= 1
+#			print('Stok Barang Habis')
 	
 	if input('ketik Sembarang Untuk Melanjutkan!') == '122912':
 		print('🤨')
