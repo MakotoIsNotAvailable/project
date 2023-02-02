@@ -12,7 +12,7 @@ def load():
 def ver():
 	while True:
 		try:
-			jawab = int(input())
+			jawab = float(input())
 
 			ver = int(input('Yakin? [1/2] '))
 			if ver == 1:
@@ -20,18 +20,18 @@ def ver():
 				break
 			elif ver == 2:
 				print('Masukkan Ulang Jawaban: ',end='')
-				continue
 		except ValueError:
 				print('Input Tidak Valid!\nMasukkan Ulang Jawaban:',end=" ")
 
 def randnum(a,b):
 	return random.randint(a,b)
+
 	
 def soal():
 	global no
 	global nilai
 	operasi = ''.join(random.sample('+-×÷',1))
-#	operasi = '+'
+	#operasi = '÷'
 
 	print('Operasi =',operasi)
 
@@ -45,7 +45,7 @@ def soal():
 			print('Yeay')
 			nilai += 1
 		else:
-			print('Jawaban Salah!\nJawaban Yang Benar: {a+b}')
+			print(f'Jawaban Salah!\nJawaban Yang Benar: {a+b}')
 			nilai -= 1
 
 	elif operasi == "-":
@@ -56,7 +56,7 @@ def soal():
 			print("Yaho")
 			nilai += 1
 		else:
-			print('Jawaban Salah!\nJawaban Yang Benar: {a+b}')		
+			print(f'Jawaban Salah!\nJawaban Yang Benar: {a-b}')		
 			nilai -= 1
 
 #	elif operasi == '×':
@@ -68,16 +68,21 @@ def soal():
 #			print('Jawaban Salah!\nJawaban Yang Benar: {a*b}')
 #			nilai -= 1
 #		
-#	if operasi == '÷':
-#		a = randnum(0,50)
-#		b = randnum(0,50)
-#		print(f'{no}. {a} + {b} = ',end='')
-#		if ver() == a + b:
-#			print('Yeay')
-#			nilai += 1
-#		else:
-#			print('Jawaban Salah!\nJawaban Yang Benar: {a/b}')
-#			nilai -= 1
+	elif operasi == '÷':
+		dummy = randnum(0,50)
+		print('Dummy =' ,dummy)
+		ls = [i for i in range(50*2+1) if i % 2 == 0]
+		print(len(ls))
+		a = ls[dummy]
+#		b = randnum(0,a)
+		b = 2
+		print(f'{no}. {a} ÷ {b} = ',end='')
+		if ver() == a / b:
+			print('Yeay')
+			nilai += 1
+		else:
+			print(f'Jawaban Salah!\nJawaban Yang Benar: {a/b}')
+			nilai -= 1
 
 
 	no += 1
