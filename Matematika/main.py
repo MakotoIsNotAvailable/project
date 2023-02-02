@@ -25,13 +25,12 @@ def ver():
 
 def randnum(a,b):
 	return random.randint(a,b)
-
 	
 def soal():
 	global no
 	global nilai
 	operasi = ''.join(random.sample('+-×÷',1))
-	#operasi = '÷'
+	operasi = '÷'
 
 	print('Operasi =',operasi)
 
@@ -59,15 +58,17 @@ def soal():
 			print(f'Jawaban Salah!\nJawaban Yang Benar: {a-b}')		
 			nilai -= 1
 
-#	elif operasi == '×':
-#		print(f'{no}. {a} × {b} = ',end='')
-#		if ver() == a * b:
-#			print('Yeay')
-#			nilai += 1
-#		else:
-#			print('Jawaban Salah!\nJawaban Yang Benar: {a*b}')
-#			nilai -= 1
-#		
+	elif operasi == '×':
+		a = randnum(0,50)
+		b = randnum(0,20)
+		print(f'{no}. {a} × {b} = ',end='')
+		if ver() == a * b:
+			print('Yeay')
+			nilai += 1
+		else:
+			print('Jawaban Salah!\nJawaban Yang Benar: {a*b}')
+			nilai -= 1
+		
 	elif operasi == '÷':
 		dummy = randnum(0,50)
 		print('Dummy =' ,dummy)
@@ -78,14 +79,15 @@ def soal():
 		b = 2
 		print(f'{no}. {a} ÷ {b} = ',end='')
 		if ver() == a / b:
-			print('Yeay')
+			print('Bruh')
 			nilai += 1
 		else:
 			print(f'Jawaban Salah!\nJawaban Yang Benar: {a/b}')
 			nilai -= 1
-
-
 	no += 1
+
+
+
 
 nilai = 0
 no = 1
@@ -93,6 +95,7 @@ print('Succes')
 if __name__ == '__main__':
 	print('Program Dimulai Dalam 3 Detik...')
 #	time.sleep(3)
+	os.system('clear')
 	while True:
 		print(f'Nilai = {nilai}')
 		soal()
