@@ -8,12 +8,19 @@ def load():
 	cek = os.path.exists('data.txt')
 #	if cek is True:
 #		with open('data.txt','r') as f:
+
+def save():
+	pass
+
+def log():
+	pass
 	
+
 def ver():
 	while True:
 		try:
 			jawab = float(input())
-
+	
 			ver = int(input('Yakin? [1/2] '))
 			if ver == 1:
 				return jawab
@@ -30,7 +37,7 @@ def soal():
 	global no
 	global nilai
 	operasi = ''.join(random.sample('+-×÷',1))
-	operasi = '÷'
+#	operasi = '÷'
 
 	print('Operasi =',operasi)
 
@@ -79,7 +86,7 @@ def soal():
 		b = 2
 		print(f'{no}. {a} ÷ {b} = ',end='')
 		if ver() == a / b:
-			print('Bruh')
+			print('Jawaban Benar')
 			nilai += 1
 		else:
 			print(f'Jawaban Salah!\nJawaban Yang Benar: {a/b}')
@@ -103,3 +110,4 @@ if __name__ == '__main__':
 # Fitur:
 #	waktu penyelesaian 
 #	save and load
+
