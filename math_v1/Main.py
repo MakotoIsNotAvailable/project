@@ -1,26 +1,54 @@
 print('Memuat Program...')
+
+# Import module 
 import os
 import random
 import time
+import csv
 
+
+# Load data user dari file txt/csv
 def load():
-	print('Memuat Data User...')
-	cek = os.path.exists('data.txt')
-#	if cek is True:
-#		with open('data.txt','r') as f:
+	pass
 
+# #Save data user dari file txt/csv
 def save():
 	pass
 
+# #Bilangan random untuk soal
+def randnum(a,b):
+	return random.randint(a,b)
+
+# #Riwayat user
 def log():
-	pass
+	print('Menyimpan riwayat pemain...')
+	
+	def save_log(ls:list):
+		with open("log.csv","w",newline="",encoding="utf-8") as csv_file:
+			csv.writer(csv_file,delimiter= ",").writerows(ls)
+			csv_file.close()
+	
+	now = time.strftime('%d-%B-%Y,%H:%M:%S')
+	data = [[now,no,nilai]]	
+	
+	xlog = os.path.exists("log.csv")
+	if xlog == False:
+		print("Log tidak di temukan\nMembuat log...")
+		data.insert(0,["Tanggal","No","Nilai"])
+		save_log(data)
+
+	elif xlog == True:
+		with open('log.csv','r',newline="",encoding='utf-8') as file:
+			data_old = [i for i in csv.reader(file,delimiter=",")]
+			data_old.append(data[0])
+			save_log(data_old)
+	print('Succes')
 	
 
 def ver():
 	while True:
 		try:
-			jawab = float(input())
-	
+			jawab = float(input())	
 			ver = int(input('Yakin? [1/2] '))
 			if ver == 1:
 				return jawab
@@ -30,20 +58,19 @@ def ver():
 		except ValueError:
 				print('Input Tidak Valid!\nMasukkan Ulang Jawaban:',end=" ")
 
-def randnum(a,b):
-	return random.randint(a,b)
+
 	
-def soal():
+def soal():	
+	log()
+	
 	global no
 	global nilai
 	operasi = ''.join(random.sample('+-×÷',1))
-#	operasi = '÷'
+	operasi = '+'
 
 	print('Operasi =',operasi)
 
 	if operasi == '+':
-#		a = random.randint(0,100)
-#		b = random.randint(0,100)
 		a = randnum(0,50)
 		b = randnum(0,50)
 		print(f'{no}. {a} + {b} = ',end='')
@@ -73,7 +100,7 @@ def soal():
 			print('Yeay')
 			nilai += 1
 		else:
-			print('Jawaban Salah!\nJawaban Yang Benar: {a*b}')
+			print(f'Jawaban Salah!\nJawaban Yang Benar: {a*b}')
 			nilai -= 1
 		
 	elif operasi == '÷':
@@ -93,19 +120,20 @@ def soal():
 			nilai -= 1
 	no += 1
 
-
+print('Succes')
 
 
 nilai = 0
 no = 1
-print('Succes')
 if __name__ == '__main__':
 	print('Program Dimulai Dalam 3 Detik...')
 #	time.sleep(3)
-	os.system('clear')
+#	os.system('clear')
 	while True:
 		print(f'Nilai = {nilai}')
+		print(f'No = {no}')
 		soal()
+		input('Pause')
 
 # Fitur:
 #	waktu penyelesaian 

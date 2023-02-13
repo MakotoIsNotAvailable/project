@@ -1,8 +1,5 @@
 #Entah kenapa orang orang banyak membuat program kasir sederhana jadi gua ikutan deh hehe
 
-
-#membuat system save data
-
 import random
 import os
 import time
@@ -38,7 +35,6 @@ dompet = 50000
 def sp():
 	print('-'*59)
 def randstok(a):
-#	try:
 	return random.randint(0,a)
 	
 barang = [
@@ -55,20 +51,6 @@ barang = [
 
 
 
-#load()
-#os.remove('data.txt')
-
-
-
-Tjumlah = []
-for i in range(0,len(barang)):
-	Tjumlah.append(0)
-
-
-
-
-
-
 def Nge():#Ngepet
 	global dompet
 	print('Berhubung Uang Sudah Habis Dan Tidak Ada Mekanisme Bekerja Di Program In Jadi Mari Kita Ngepet')
@@ -79,6 +61,7 @@ def Nge():#Ngepet
 		if dompet >= batas:
 			break
 		dompet += 1
+
 
 #Tampilan
 def view():
@@ -102,7 +85,7 @@ def view():
 		print(f"|{x+1}.{str(i[0]).ljust(a-2)}|{format(i[1],',').rjust(b)}|{str(i[2]).rjust(c)}|{str(i[3]).rjust(d)}|"); x += 1
 	sp()
 	
-	#Tas
+	# Tas/Barang Yang Sudah Di Beli
 	print(f'|{"Isi Tas".ljust(a)}|{"Jumlah".center(b)}|'); sp(); x = 0
 	for i in barang:
 		print(f'|{x+1}.{i[0].ljust(a-2)}|{str(Tjumlah[x]).rjust(b)}|'); x += 1
@@ -118,23 +101,22 @@ def userI():
 	global dompet
 	global barang
 	global Tjumlah
-	#Interaksi User
+
+	# Interaksi User
 	while True:
 		try:
-				inputU = int(input('Mau Beli Apa? ').lower())
+				inputU = int(input('Mau Beli Apa? ')) - 1 
 				if inputU > len(barang):
-					print('Barang Tidak Ada ')
+					print('Barang Tidak Ada')
 					continue
-				if barang[inputU-1][2] <= 0:
+				if barang[inputU][2] <= 0:
 					print('Stok Barang Habis!')
 					continue
-				if dompet < barang[inputU-1][1]:
+				if dompet < barang[inputU][1]:
 					print('Uang Tidak Cukup!')
 					continue
 				
-				##
-				
-				#ver = input('Yakin? [y/n] ')
+				# Verivikasi input user
 				ver = input('Bayar? [y/n] ')
 				if ver == 'y':
 					break
@@ -142,11 +124,15 @@ def userI():
 					continue
 		except ValueError:
 			print('Terjadi Kesalahan')
+			
+	dompet -= barang[inputU][1]
+	barang[inputU][2] -= 1
+	Tjumlah[inputU] += 1
 		
-	if inputU >= 1 and inputU<= len(barang):
-		dompet -= barang[inputU-1][1]
-		barang[inputU-1][2] -= 1
-		Tjumlah[inputU-1] += 1
+#	if inputU >= 1 and inputU <= len(barang):
+#		dompet -= barang[inputU][1]
+#		barang[inputU][2] -= 1
+#		Tjumlah[inputU] += 1
 		
 #		if dompet < 0:
 #			dompet += barang[inputU-1][1]
@@ -160,12 +146,18 @@ def userI():
 #			Tjumlah[inputU-1] -= 1
 #			print('Stok Barang Habis')
 	
-	if input('ketik Sembarang Untuk Melanjutkan!') == '122912':
-		print('🤨')
+	if input('ketik Sembarang Untuk Melanjutkan!  ').lower() == 'sudo su':
+		if input('Masukkan Password: ') == 'root':
+			print('Login Berhasil!')
+			
+			print('Fitur Sedang Di Buat!')
+			input()
 
 
 
-
+Tjumlah = []
+for i in range(0,len(barang)):
+	Tjumlah.append(0)
 
 while True:
 	os.system('clear')
@@ -174,7 +166,7 @@ while True:
 #	time.sleep(1)
 
 
-#Menulis kedalam file.txt
+#Menulis kedalam file.txt-> csv file
 #read  input dari file.txt ke integer dan mengubahnya menjadi list
 
 
