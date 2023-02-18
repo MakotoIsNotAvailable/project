@@ -1,5 +1,3 @@
-print('Memuat Program...')
-
 # Import module 
 import os
 import random
@@ -9,7 +7,10 @@ import csv
 
 # #Bilangan random untuk soal
 def randnum(a=0,b=100):
-	return random.randint(a,b)
+	while True:
+		z = random.randint(a,b)
+		if z != 0:
+			return z
 
 # Fungsi Tambahan Untuk log
 def save_log(ls:list):
@@ -19,9 +20,10 @@ def save_log(ls:list):
 
 # #Riwayat user
 def log():
+	# Append ?
+	
 	# Cara Kerja:
-		#Menbaca File, kemudian menyimpan nya kedalam sebuah list, lalu ditambahkan data baru, setelah itu di tulis lagi
-		
+		#Membaca File, kemudian menyimpan nya kedalam sebuah list, lalu ditambahkan data baru, setelah itu di tulis kembali kedalam file log		
 	print('Menyimpan riwayat pemain...')	
 	now = time.strftime('%d-%B-%Y,%H:%M:%S')
 	
@@ -31,7 +33,7 @@ def log():
 	
 	xlog = os.path.exists("log.csv")
 	if xlog == False:
-		#Membuat File Csv Jika Tidak Ada
+		# Membuat File Csv Jika Tidak Ada
 		print("Log tidak di temukan\nMembuat log...")
 		data.insert(0,["Tanggal","Nilai","No"])
 		save_log(data)
@@ -42,11 +44,12 @@ def log():
 			data_old.append(data[0])
 			save_log(data_old)
 	print('Tersimpan')
-	os.system('clear')
-	
+#	os.system('clear')
+
 
 def jawab(v=True):
 	# Fungsi ini berfungsi supaya tidak terjadi runtime eror, fungsi ini akan mengembalikan nilai yang di input pada variable input_user
+	# Waktu Mulai
 	while True:
 		try:
 			input_user = float(input())
@@ -54,12 +57,10 @@ def jawab(v=True):
 				ver = int(input('Yakin? [1/2] '))
 				if ver == 1:
 					return input_user
-					break
 				else:
 					print('Masukkan Ulang Jawaban: ',end='')
 			elif v == False:
 				return input_user
-				break
 		except ValueError:
 				print('Input Tidak Valid!\nMasukkan Ulang Jawaban:',end=" ")
 
@@ -68,7 +69,8 @@ def jawab(v=True):
 def soal():
 	global no
 	global nilai
-	log()
+	
+	# !!!Membuat Fungsi Supaya Tidak Terjadi Pengulangan Penulisan Code
 	
 	operasi = ''.join(random.sample('+-×÷',1))
 	operasi = '+'
@@ -76,10 +78,10 @@ def soal():
 	#print('Operasi =',operasi)
 
 	if operasi == '+':
-		a = randnum(0,50)
-		b = randnum(0,50)
+		a = randnum(0,3)
+		b = randnum(0,3)
 		print(f'{no}. {a} + {b} = ',end='')
-		if jawab() == a + b:
+		if jawab(False) == a + b:
 			print('Yeay')
 			nilai += 1
 		else:
@@ -111,12 +113,13 @@ def soal():
 	# Later
 #######################
 	elif operasi == '÷':
-		dummy = randnum(0,50)
-		print('Dummy =' ,dummy)
-		ls = [i for i in range(50*2+1) if i % 2 == 0]
-		print(len(ls))
-		a = ls[dummy]
+#		dummy = randnum(0,50)
+#		print('Dummy =' ,dummy)
+#		ls = [i for i in range(50*2+1) if i % 2 == 0]
+#		print(len(ls))
+#		a = ls[dummy]
 #		b = randnum(0,a)
+		a = 10
 		b = 2
 		print(f'{no}. {a} ÷ {b} = ',end='')
 		if jawab() == a / b:
@@ -125,30 +128,45 @@ def soal():
 		else:
 			print(f'Jawaban Salah!\nJawaban Yang Benar: {a/b}')
 			nilai -= 1
+
 	no += 1
-##############################
-print('Succes')
-if __name__ == '__main__':
+	# Menyimpan Data
+	log()
+
+# Program Utama
+def main():
+	global no
+	global nilai
+	
 	if os.path.exists('log.csv') == False:
 		no = 1; nilai = 0
 		log()
-	with open('log.csv','r',newline="",encoding='utf-8') as file:
-		a = [i for i in csv.reader(file,delimiter=",")]
-		nilai = a[-1][1]; nilai = int(nilai)
-		no = a[-1][2]; no = int(no)
+	else:
+		with open('log.csv','r',newline="",encoding='utf-8') as file:
+			a = [i for i in csv.reader(file,delimiter=",")]
+			nilai = a[-1][1]; nilai = int(nilai)
+			no = a[-1][2]; no = int(no)
 			
 	print(f'Nilai = {nilai}')
 	print(f'No = {no}')
 	input('Klik Enter Untuk Melanjutkan')	
 	while True:
 		soal()
-#		if stop == True:
-#			break
+
+
+##############################
+if __name__ == '__main__':
+	print('Succes')
+	main()
 
 # Fitur:
 #	waktu penyelesaian 
 #	save and load
 #	soal menyesuaikan nilai
+#	soal dan jawaban tertulis di log
+
+# Later:
+# Sqlite
 
 # Bug:
 #	Jika menjalankan program tanpa menjawab soal apapun, maka program akan tetap menulis pada log meskipun tidak ada perubahan pada nilai maupun nomor. Hal ini akan mengakibatkan ukuran file  membengkak, solusinya bisa dengan dengan menulis code "Jika no and nilai == data_old: continue", code tersebut  akan menulis log jika no dan nilai mengalami perubahan dan jika tidak terjadi perubahan maka program tidak akan mengupdate log

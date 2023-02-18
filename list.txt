@@ -1,0 +1,26 @@
+Task:
+	Download windows 7(rufus)
+
+An:
+	
+	Later:
+		Senyoku no Sigrdrifa
+		Ongaku Soujo
+		Tomodachi wa Sukunai
+		Melancholy of haruhi Suzumiya
+		Summer Time Rendering
+		Danchigai
+		Delivery Mama(?)
+		Ao No Kanata
+		Majikoi
+		Tokyo Revens
+		Gakkougurashi
+		Hidan no Aria
+	
+	Watching:
+		Leadale
+		Kage No Jitsuryokusha Ni Naritakute
+		Lyco---
+
+R:
+	github.com/hemanth/functional-programming-jargon
