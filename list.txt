@@ -16,6 +16,7 @@ An:
 		Tokyo Revens
 		Gakkougurashi
 		Hidan no Aria
+		Ore No Kanojo to Osananajimi ga Shuraba Sugiru(#)
 	
 	Watching:
 		Leadale
@@ -24,3 +25,4 @@ An:
 
 R:
 	github.com/hemanth/functional-programming-jargon
+	stack overflow

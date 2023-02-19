@@ -129,22 +129,6 @@ def userI():
 	barang[inputU][2] -= 1
 	Tjumlah[inputU] += 1
 		
-#	if inputU >= 1 and inputU <= len(barang):
-#		dompet -= barang[inputU][1]
-#		barang[inputU][2] -= 1
-#		Tjumlah[inputU] += 1
-		
-#		if dompet < 0:
-#			dompet += barang[inputU-1][1]
-#			barang[inputU-1][2] += 1
-#			Tjumlah[inputU-1] -= 1
-#			print('Uang Tidak Cukup')
-#		
-#		if barang[inputU-1][2] < 0:
-#			dompet += barang[inputU-1][1]
-#			barang[inputU-1][2] += 1
-#			Tjumlah[inputU-1] -= 1
-#			print('Stok Barang Habis')
 	
 	if input('ketik Sembarang Untuk Melanjutkan!  ').lower() == 'sudo su':
 		if input('Masukkan Password: ') == 'root':
