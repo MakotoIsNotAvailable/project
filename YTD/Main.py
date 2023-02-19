@@ -1,20 +1,19 @@
 import pytube as pt
 
-def inp(text=" ",intr=True):
+def inpi(text=" "):
 	while True:
 		try:
-			if intr == True: return int(input(text))
-			else: return input(text)
-		except:
-			print('Input Tidak Valid!')
-
+			return int(input(text))
+		except ValueError:
+			print('Input Harus Angka!')
+#else: print("Error inpi")
 
 def video(link):
 	v1 = pt.YouTube(link).streams.all()
 	for i in list(enumerate(v1)):
 		print(i); print()
 		
-	inputU = inp('Pilih Opsi: ')
+	inputU = inpi('Pilih Opsi: ')
 	print('Downloading.......')
 	v1[inputU].download()
 	print('Download Complete!')
