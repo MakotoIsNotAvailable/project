@@ -17,12 +17,35 @@ An:
 		Gakkougurashi
 		Hidan no Aria
 		Ore No Kanojo to Osananajimi ga Shuraba Sugiru(#)
+		Tachibanakan Triangle(o)
+		Partner for Justice
+		Yuuki Yuuna Wa Yuusha De Aru
+		Grimgar
+		Luminous Witches
+		Asagao To Kase
+		Iya Na Kao Sore
+		Kantai Collection(@)
+		Benria Saitou
+		Buddy Daddies
+		Enen no Shouboutai
+		Nande Koko ni Sensei Ga
+		Rikekoi
+		Osake wa Fuufu ni Natte Kara
+		Kanojo Ga Flag
+		Watashi, Nouryoku Wa Heikinchi
+		Yamada-kun to 7-nin no Majo
 	
 	Watching:
 		Leadale
 		Kage No Jitsuryokusha Ni Naritakute
-		Lyco---
+		Lycoris Recoil
+
+
 
 R:
 	github.com/hemanth/functional-programming-jargon
 	stack overflow
+	Luhn alg
+
+L:
+	Canva(video)(animasi)(pkn) > 3-Maret
